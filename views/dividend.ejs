@@ -1,0 +1,10 @@
+<%include header %>
+		<h1><%= title %></h1>
+		<% if(dividends){ %>
+			<ui>
+			<% dividends.forEach(function(dividend){ %>
+				<li> <%= dividend.product %> : <%= dividend.winningSelections %> : $<%= dividend.amount %></li>
+			<% }) %>
+			</ui>
+		<% } %>
+<%include footer %>	

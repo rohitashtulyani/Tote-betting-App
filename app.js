@@ -4,6 +4,7 @@ var path = require('path');
 var fs = require('fs');
 var Bet = require(path.join(__dirname, 'app/bet'));
 var Result = require(path.join(__dirname, 'app/result'));
+var Dividend = require(path.join(__dirname, 'app/dividend'));
 
 var app = express();
 
@@ -51,6 +52,15 @@ app.post('/result', function(req, res){
 			title : "Result"
 		});
 	});	
+})
+
+app.get('/dividend', function(req, res){
+	Dividend.calculate(req.body, function(err, resp){
+			return res.render('dividend', {
+				title : "Dividends",
+				dividends : resp
+			});
+		});
 })
 
 app.listen(3000, function(){
