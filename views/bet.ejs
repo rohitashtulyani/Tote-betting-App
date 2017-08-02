@@ -1,0 +1,15 @@
+<%include header %>
+		<h1><%= title %></h1>
+		<form method="POST" action="/bet">
+			<label> Product </label><br>
+			<input	type = "text" name ="product"><br>
+
+			<label> Selections </label><br>
+			<input	type = "text" name ="selections"><br>
+
+			<label> Stake </label><br>
+			<input	type = "text" name ="stake"><br><br>
+
+			<input type="submit" value="Submit">
+		</form>
+<%include footer %>	

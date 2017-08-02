@@ -1,0 +1,17 @@
+{
+  "name": "Tote-betting-App",
+  "version": "1.0.0",
+  "description": " Simple Horse Racing Betting App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rohitash Tulyani",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.7",
+    "express": "^4.15.3",
+    "lodash": "^4.17.4"
+  }
+}
