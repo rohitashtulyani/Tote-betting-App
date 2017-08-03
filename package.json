@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": " Simple Horse Racing Betting App",
   "main": "app.js",
- "scripts": {
+  "scripts": {
     "test": "./node_modules/mocha/bin/_mocha",
     "start": "node app.js"
   },
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/rohitashtulyani/Tote-betting-App"
   },
@@ -16,6 +16,8 @@
   "homepage": "https://github.com/rohitashtulyani/Tote-betting-App#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "chai-things": "^0.2.0",
+    "docco": "^0.7.0",
     "ejs": "^2.5.7",
     "express": "^4.15.3",
     "express-validator": "^3.2.1",
