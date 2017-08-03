@@ -9,7 +9,7 @@ router.param('raceId', function(req, res, next, raceId) {
  
 });
 
-router.get('/races/:raceId/dividend', function(req, res, next) {
+router.get('/races/:raceId/dividends', function(req, res, next) {
  Dividend.calculate(req, function(err, resp){
 			return res.render('dividend', {
 				title : "Dividends",

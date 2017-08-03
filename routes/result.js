@@ -9,14 +9,14 @@ router.param('raceId', function(req, res, next, raceId) {
  
 });
 
-router.get('/races/:raceId/result', function(req, res, next) {
+router.get('/races/:raceId/results', function(req, res, next) {
   res.render('result', {
 		title : "Result",
 		raceId : req.raceId
 	});
 });
 
-router.post('/races/:raceId/result', function(req, res, next) {
+router.post('/races/:raceId/results', function(req, res, next) {
  Result.save(req, function(err, resp){
 			return res.render('result', {
 				title : "Result",

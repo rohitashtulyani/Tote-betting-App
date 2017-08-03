@@ -8,15 +8,15 @@ module.exports = {
 			return totalAmount + _.parseInt(JSON.parse(bet).stake);
 		}, 0);
 	},
-	filterListBasedOnSelections : function(list, matchCriteria){
-		return list.filter(function(obj){
-			if(obj && matchCriteria){
-				return matchCriteria === JSON.parse(obj).selections;
+	filterBetsBasedOnSelections : function(bets, matchCriteria){
+		return bets.filter(function(bet){
+			if(bet && matchCriteria){
+				return matchCriteria === JSON.parse(bet).selections;
 			}
 		})
 	},
-	getDividendAmount : function (poolAmount, stakeAmount, commission){
+	getDividendAmount : function (poolAmount, correctBetsAmount, commission){
 	var afterCommissionAmount = _.multiply(poolAmount, (1 - commission));
-	return stakeAmount ? _.round(_.divide(afterCommissionAmount, stakeAmount), 2) : 0;
+	return correctBetsAmount ? _.round(_.divide(afterCommissionAmount, correctBetsAmount), 2) : 0;
 }
 }
