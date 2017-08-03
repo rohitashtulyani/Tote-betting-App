@@ -17,7 +17,7 @@ router.get('/races/:raceId/bet', function(req, res, next) {
 });
 
 router.post('/races/:raceId/bet', function(req, res, next) {
-	Bet.make(req, function(err, resp){
+	Bet.save(req, function(err, resp){
 			return res.render('bet', {
 				title : "Bet",
 				raceId : req.raceId

@@ -7,7 +7,7 @@ function Bet(product, selections, stake){
 	this.stake = stake;
 }
 
-Bet.make = function(req, next){
+Bet.save = function(req, next){
 	
 	var raceId = req.raceId;
 	console.log("raceId is : ",raceId);

@@ -17,7 +17,7 @@ router.get('/races/:raceId/result', function(req, res, next) {
 });
 
 router.post('/races/:raceId/result', function(req, res, next) {
- Result.publish(req, function(err, resp){
+ Result.save(req, function(err, resp){
 			return res.render('result', {
 				title : "Result",
 				raceId : req.raceId

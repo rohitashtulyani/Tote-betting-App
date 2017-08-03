@@ -7,7 +7,7 @@ function Result(first, second, third){
 	this.third = third;
 }
 
-Result.publish = function(req, next){
+Result.save = function(req, next){
 	var raceId = req.raceId;
 	console.log("raceId is : ",raceId);
 	var result = new Result(req.body.first, req.body.second, req.body.third);
