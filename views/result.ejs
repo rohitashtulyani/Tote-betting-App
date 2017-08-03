@@ -1,6 +1,13 @@
 <%include header %>
 		<h1><%= title %></h1>
-		<form method="POST" action="/result">
+		<% if(errors != undefined){ %>
+			<ui>
+			<% errors.forEach(function(error){ %>
+				<li> <%= error.msg %></li>
+			<% }) %>
+			</ui>
+		<% } %>
+		<form method="POST" action="/races/<%= raceId %>/result">
 			<label> First </label><br>
 			<input	type = "text" name ="first"><br>
 
@@ -11,5 +18,8 @@
 			<input	type = "text" name ="third"><br><br>
 
 			<input type="submit" value="Submit">
+		</form><br><br>
+		<form method="GET" action="/races/<%= raceId %>/"> 
+			<input type="submit" value="Back to main page">
 		</form>
 <%include footer %>	

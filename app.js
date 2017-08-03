@@ -2,9 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
-var Bet = require(path.join(__dirname, 'app/bet'));
-var Result = require(path.join(__dirname, 'app/result'));
-var Dividend = require(path.join(__dirname, 'app/dividend'));
+var betRouter = require('./routes/bet');
+var resultRouter = require('./routes/result');
+var dividendRouter = require('./routes/dividend');
+var raceRouter = require('./routes/race');
 
 var app = express();
 
@@ -25,43 +26,18 @@ app.use(function(req, res, next){
 	next();
 })
 
-// Routes
-app.get('/bet', function(req, res){
-	res.render('bet', {
-		title : "Bet"
+// Routers
+app.use('', raceRouter);
+app.use('', betRouter);
+app.use('', resultRouter);
+app.use('', dividendRouter);
+
+app.get('/races', function(req, res, next) {
+ 	return res.render('race', {
+		title : "Race",
+		race_id : req.race_id
 	});
-})
-
-app.post('/bet', function(req, res){
-	Bet.make(req.body, function(err, resp){
-		return res.render('bet', {
-			title : "Bet"
-		});
-	});
-})
-
-app.get('/result', function(req, res){
-	res.render('result', {
-		title : "Result"
-	});
-})
-
-app.post('/result', function(req, res){
-	Result.publish(req.body, function(err, resp){
-		return res.render('result', {
-			title : "Result"
-		});
-	});	
-})
-
-app.get('/dividend', function(req, res){
-	Dividend.calculate(req.body, function(err, resp){
-			return res.render('dividend', {
-				title : "Dividends",
-				dividends : resp
-			});
-		});
-})
+});
 
 app.listen(3000, function(){
 	console.log("Server started on port 3000");

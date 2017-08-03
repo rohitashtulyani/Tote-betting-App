@@ -12,10 +12,15 @@ function Dividend(product, winningSelections, dividend){
 	this.amount = dividend
 }
 
-Dividend.calculate = function(body, next){
-	var bets = fs.readFileSync(path.join('./' , 'db/bets.txt'),'utf8');
+Dividend.calculate = function(req, next){
+	var raceId = req.raceId;
+	console.log("raceId is : ",raceId);
+	var bFile = "bets_"+raceId+".txt";
+	var bets = fs.readFileSync(path.join('./db/' +bFile),'utf8');
 	var betsList =  bets.split("\n");
-	var results = fs.readFileSync(path.join('./' , 'db/results.txt'),'utf8');
+
+	var rFileName = "results_"+raceId+".txt";
+	var results = fs.readFileSync(path.join('./db/' +rFileName),'utf8');
 	var firstRanker = JSON.parse(results).first;
 	var secondRanker = JSON.parse(results).second;
 	var thirdRanker = JSON.parse(results).third;

@@ -1,6 +1,13 @@
 <%include header %>
 		<h1><%= title %></h1>
-		<form method="POST" action="/bet">
+		<% if(errors != undefined){ %>
+			<ui>
+			<% errors.forEach(function(error){ %>
+				<li> <%= error.msg %></li>
+			<% }) %>
+			</ui>
+		<% } %>
+		<form method="POST" action="/races/<%= raceId %>/bet">
 			<label> Product </label><br>
 			<input	type = "text" name ="product"><br>
 
@@ -11,5 +18,8 @@
 			<input	type = "text" name ="stake"><br><br>
 
 			<input type="submit" value="Submit">
+		</form><br><br>
+		<form method="GET" action="/races/<%= raceId %>"> 
+			<input type="submit" value="Back to main page">
 		</form>
 <%include footer %>	

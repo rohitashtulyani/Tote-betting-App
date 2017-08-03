@@ -7,10 +7,14 @@ function Bet(product, selections, stake){
 	this.stake = stake;
 }
 
-Bet.make = function(body, next){
-	var bet = new Bet(body.product, body.selections, body.stake);
+Bet.make = function(req, next){
+	
+	var raceId = req.raceId;
+	console.log("raceId is : ",raceId);
+	var bet = new Bet(req.body.product, req.body.selections, req.body.stake);
 	console.log("Writing bet to bets.txt :: ", bet);
-	fs.appendFile(path.join('./' , 'db/bets.txt'), JSON.stringify(bet)+"\n");
+	var fileName = "bets_"+raceId+".txt";
+	fs.appendFile(path.join('./db/', fileName), JSON.stringify(bet)+"\n");
 	next(null, bet);
 }
 

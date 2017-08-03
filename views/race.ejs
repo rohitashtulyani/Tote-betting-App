@@ -1,0 +1,15 @@
+<%include header %>
+		<h1><%= title %></h1>
+		<form method="GET" action="/races/<%= raceId %>/bet">
+			<input type="submit" value="Start Betting"> 
+		</form>
+		<form method="GET" action="/races/<%= raceId %>/result"> 
+			<input type="submit" value="Enter Result">
+		</form>
+		<form method="GET" action="/races/<%= raceId %>/dividend"> 
+			<input type="submit" value="Show Dividend">
+		</form>
+		<form method="GET" action="/"> 
+			<input type="submit" value="Back to home page">
+		</form>
+<%include footer %>	
