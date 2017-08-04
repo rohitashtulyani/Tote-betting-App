@@ -1,3 +1,5 @@
+'use strict';
+
 var _ = require('lodash');
 
 module.exports = {
@@ -12,6 +14,13 @@ module.exports = {
 		return bets.filter(function(bet){
 			if(bet && matchCriteria){
 				return matchCriteria === JSON.parse(bet).selections;
+			}
+		})
+	},
+	filterBetsBasedOnProduct : function(bets, matchCriteria){
+		return bets.filter(function(bet){
+			if(bet && matchCriteria){
+				return matchCriteria === JSON.parse(bet).product;
 			}
 		})
 	},

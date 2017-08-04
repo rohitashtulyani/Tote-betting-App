@@ -1,3 +1,5 @@
+'use strict';
+
 var express  = require('express');
 var router = express.Router();
 var path = require('path');
@@ -17,12 +19,16 @@ router.get('/', function(req, res, next) {
 
 router.post('/races', function(req, res, next) {
 	Race.start(req.body, function(err, resp){
-		console.log("resp.raceId is ::", resp.raceId);
+		if(err){
+			next(err);
+		}else{
+			console.log("resp.raceId is ::", resp.raceId);
 			return res.render('race', {
 				title : "Race",
 				raceId : resp.raceId
 			});
-		});
+		}	
+	})
 });
 
 router.get('/races/:raceId', function(req, res, next) {

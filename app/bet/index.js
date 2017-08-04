@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs');
 var path = require('path');
 
@@ -8,14 +10,17 @@ function Bet(product, selections, stake){
 }
 
 Bet.save = function(req, next){
-	
-	var raceId = req.raceId;
-	console.log("raceId is : ",raceId);
-	var bet = new Bet(req.body.product, req.body.selections, req.body.stake);
-	console.log("Writing bet to bets.txt :: ", bet);
-	var fileName = "bets_"+raceId+".txt";
-	fs.appendFile(path.join('./db/', fileName), JSON.stringify(bet)+"\n");
-	next(null, bet);
+	try{
+		var raceId = req.raceId;
+		console.log("raceId is : ",raceId);
+		var bet = new Bet(req.body.product, req.body.selections, req.body.stake);
+		console.log("Writing bet to bets.txt :: ", bet);
+		var fileName = "bets_"+raceId+".txt";
+		fs.appendFileSync(path.join('./db/', fileName), JSON.stringify(bet)+"\n");
+		next(null, bet);
+	}catch(err){
+		next(err);
+	}
 }
 
 module.exports = Bet;

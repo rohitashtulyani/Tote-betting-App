@@ -1,3 +1,5 @@
+'use strict';
+
 var uuid = require('uuid');
 
 function Race(raceId){
@@ -5,11 +7,14 @@ function Race(raceId){
 }
 
 Race.start = function(body, next){
-
-	var raceId = uuid.v4();
-	var race = new Race(raceId);
-	console.log("race :: ", race);
-	next(null, race);
+	try{
+		var raceId = uuid.v4();
+		var race = new Race(raceId);
+		console.log("race :: ", race);
+		next(null, race);
+	}catch(err){
+		next(err);
+	}
 }
 
 module.exports = Race;

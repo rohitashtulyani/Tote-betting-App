@@ -1,3 +1,5 @@
+'use strict';
+
 var express  = require('express');
 var router = express.Router();
 var path = require('path');
@@ -17,11 +19,15 @@ router.get('/races/:raceId/results', function(req, res, next) {
 });
 
 router.post('/races/:raceId/results', function(req, res, next) {
- Result.save(req, function(err, resp){
-			return res.render('result', {
-				title : "Result",
-				raceId : req.raceId
-			});
+ 		Result.save(req, function(err, resp){
+ 			if(err){
+				next(err);
+			}else{
+				return res.render('result', {
+					title : "Result",
+					raceId : req.raceId
+				});
+			}
 		});
 });
 

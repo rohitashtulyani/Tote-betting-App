@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -6,6 +8,7 @@ var betRouter = require('./routes/bet');
 var resultRouter = require('./routes/result');
 var dividendRouter = require('./routes/dividend');
 var raceRouter = require('./routes/race');
+var errorHandler = require('./middlewares/error-handler');
 
 var app = express();
 
@@ -32,12 +35,7 @@ app.use('', betRouter);
 app.use('', resultRouter);
 app.use('', dividendRouter);
 
-app.get('/races', function(req, res, next) {
- 	return res.render('race', {
-		title : "Race",
-		race_id : req.race_id
-	});
-});
+app.use(errorHandler);
 
 app.listen(3000, function(){
 	console.log("Server started on port 3000");
