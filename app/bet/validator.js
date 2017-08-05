@@ -28,9 +28,9 @@ function validate(bet, cb) {
         if('E' !== bet.product.trim() && bet.selections.trim().split(",").length !== 1){
             errors.push(new Error('Selections should be a number format.'));
         }
-        /*if(!isValidSelections(bet.product.trim())){
+        if(!isValidSelections(bet.selections.trim())){
             errors.push(new Error('Selections value is not valid.'));
-        }*/
+        }
     } else{
         errors.push(new Error("Selections is Required."));
     }
