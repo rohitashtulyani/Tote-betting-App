@@ -13,13 +13,14 @@ function Bet(product, selections, stake){
 Bet.save = function(req, next){
 	try{
 		var raceId = req.raceId;
-		console.log("raceId is : ",raceId);
 		var bet = new Bet(req.body.product, req.body.selections, req.body.stake);
 		validator(bet, function(err, res){
 			if(err){
 				console.log("err :: ", err);
-				return next(err);
+				throw err;
 			}
+			console.log("__dir :: ", __dirname);
+				console.log("__filename :: ", __filename);
 			console.log("Writing bet to bets.txt :: ", bet);
 			var fileName = "bets_"+raceId+".txt";
 			fs.appendFileSync(path.join('./db/', fileName), JSON.stringify(bet)+"\n");

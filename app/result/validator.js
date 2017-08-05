@@ -27,7 +27,7 @@ function validate(result, cb) {
     }
 
     if(errors.length > 0){
-        cb(errors);
+        return cb(errors);
     } else {
         cb();
     }

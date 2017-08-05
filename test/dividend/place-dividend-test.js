@@ -17,10 +17,13 @@ bets.push('{"product":"P","selections":"2","stake":"74"}');
 bets.push('{"product":"P","selections":"3","stake":"39"}');
 bets.push('{"product":"P","selections":"4","stake":"105"}');
 
-var result = '{"first":"2","second":"3","third":"1"}';
+var result = {}
+result.first = "2" ;
+result.second = "3" ;
+result.third = "1";
 
-describe("Util", function() {
-    it("should be calcualte deividends amount", function(done) {
+describe("Place dividend", function() {
+    it("should be calcualte", function(done) {
        pDividend(bets, result, function(err, dividendAmountArray){
           assert.equal(1.06, dividendAmountArray.first);
           assert.equal(1.27, dividendAmountArray.second);

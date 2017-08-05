@@ -18,7 +18,7 @@ Result.save = function(req, next){
 		validator(result, function(err, res){
 			if(err){
 				console.log("err :: ", err);
-				return next(err);
+				throw err;
 			}
 			console.log("Writing result to results.txt :: ", result);
 			var fileName = "results_"+raceId+".txt";

@@ -17,10 +17,13 @@ bets.push('{"product":"E","selections":"2,3","stake":"47"}');
 bets.push('{"product":"E","selections":"1,3","stake":"93"}');
 bets.push('{"product":"E","selections":"3,2","stake":"51"}');
 
-var result = '{"first":"2","second":"3","third":"1"}';
+var result = {}
+result.first = "2" ;
+result.second = "3" ;
+result.third = "1";
 
-describe("Util", function() {
-    it("should be calcualte dividend", function(done) {
+describe("Exacta dividend", function() {
+    it("should be calcualte", function(done) {
        eDividend(bets, result, function(err, dividendAmount){
           assert.equal(2.43, dividendAmount);
           done();

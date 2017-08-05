@@ -17,10 +17,13 @@ bets.push('{"product":"W","selections":"2","stake":"98"}');
 bets.push('{"product":"W","selections":"3","stake":"63"}');
 bets.push('{"product":"W","selections":"4","stake":"15"}');
 
-var result = '{"first":"2","second":"3","third":"1"}';
+var result = {}
+result.first = "2" ;
+result.second = "3" ;
+result.third = "1";
 
-describe("Util", function() {
-    it("should be calcualte divident amount", function(done) {
+describe("Win dividend", function() {
+    it("should be calcualte", function(done) {
        wDividend(bets, result, function(err, dividendAmount){
           assert.equal(2.61, dividendAmount);
           done();
