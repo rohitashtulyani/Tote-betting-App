@@ -1,8 +1,8 @@
 <%include header %>
 		<h1> Dividends </h1>
 		<% if(dividends){ %>
-			<ui>
-			<% dividends.forEach(function(dividend){ %>
+			<ui
+						<% dividends.forEach(function(dividend){ %>
 				<% dividend.forEach(function(divi){ %>
 					<li> <%= divi.product %> : <%= divi.winningSelections %> : $<%= divi.amount %></li>
 				<% }) %>
