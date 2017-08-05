@@ -1,9 +1,10 @@
 // middleware - error handler
 module.exports = function(err, req, res, next) {
 	console.error("err  is :: ", err);
-	res.render('error', {
-		title : "Error Page",
+	var splitedRoute = req.route.path.split("/");
+	var route = splitedRoute[splitedRoute.length - 1];
+	res.render(route, {
 		raceId : req.raceId,
-		errors : err.stack
+		errors : err
 	});
 }

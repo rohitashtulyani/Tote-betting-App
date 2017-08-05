@@ -1,10 +1,7 @@
 <%include header %>
-		<h1><%= title %></h1>
+		<h1> Race - <%= raceId %></h1>
 		<form method="GET" action="/races/<%= raceId %>/bets">
 			<input type="submit" value="Start Betting"> 
-		</form>
-		<form method="GET" action="/races/<%= raceId %>/results"> 
-			<input type="submit" value="Enter Result">
 		</form>
 		<form method="GET" action="/races/<%= raceId %>/dividends"> 
 			<input type="submit" value="Show Dividend">

@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var validator = require("./validator");
 
 function Bet(product, selections, stake){
 	this.product = product;
@@ -14,10 +15,16 @@ Bet.save = function(req, next){
 		var raceId = req.raceId;
 		console.log("raceId is : ",raceId);
 		var bet = new Bet(req.body.product, req.body.selections, req.body.stake);
-		console.log("Writing bet to bets.txt :: ", bet);
-		var fileName = "bets_"+raceId+".txt";
-		fs.appendFileSync(path.join('./db/', fileName), JSON.stringify(bet)+"\n");
-		next(null, bet);
+		validator(bet, function(err, res){
+			if(err){
+				console.log("err :: ", err);
+				return next(err);
+			}
+			console.log("Writing bet to bets.txt :: ", bet);
+			var fileName = "bets_"+raceId+".txt";
+			fs.appendFileSync(path.join('./db/', fileName), JSON.stringify(bet)+"\n");
+			next(null, bet);
+		});
 	}catch(err){
 		next(err);
 	}

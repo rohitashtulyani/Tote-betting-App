@@ -1,23 +1,26 @@
 <%include header %>
-		<h1><%= title %></h1>
+		<h1> Bets </h1>
 		<% if(errors != undefined){ %>
 			<ui>
 			<% errors.forEach(function(error){ %>
-				<li> <%= error.msg %></li>
+				<li> <%= error %></li>
 			<% }) %>
 			</ui>
 		<% } %>
 		<form method="POST" action="/races/<%= raceId %>/bets">
-			<label> Product </label><br>
+			<label> Product : W - Win , P - Place , E - Exacta</label><br>
 			<input	type = "text" name ="product"><br>
 
-			<label> Selections </label><br>
+			<label> Selections : Horse No.</label><br>
 			<input	type = "text" name ="selections"><br>
 
-			<label> Stake </label><br>
+			<label> Stake : Amount in $</label><br>
 			<input	type = "text" name ="stake"><br><br>
 
 			<input type="submit" value="Submit">
+		</form><br>
+		<form method="GET" action="/races/<%= raceId %>/results"> 
+			<input type="submit" value="End Race">
 		</form><br><br>
 		<form method="GET" action="/races/<%= raceId %>"> 
 			<input type="submit" value="Back to main page">

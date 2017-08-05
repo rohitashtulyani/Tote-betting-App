@@ -12,8 +12,7 @@ router.param('raceId', function(req, res, next, raceId) {
 });
 
 router.get('/races/:raceId/bets', function(req, res, next) {
-  res.render('bet', {
-		title : "Bet",
+  res.render('bets', {
 		raceId : req.raceId
 	});
 });
@@ -23,8 +22,7 @@ router.post('/races/:raceId/bets', function(req, res, next) {
 		if(err){
 			next(err);
 		} else {
-			return res.render('bet', {
-				title : "Bet",
+			return res.render('bets', {
 				raceId : req.raceId
 			});
 		}

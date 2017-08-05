@@ -1,10 +1,12 @@
 <%include header %>
-		<h1><%= title %></h1>
+		<h1> Dividends </h1>
 		<% if(dividends){ %>
 			<ui>
 			<% dividends.forEach(function(dividend){ %>
-				<li> <%= dividend.product %> : <%= dividend.winningSelections %> : $<%= dividend.amount %></li>
-			<% }) %>
+				<% dividend.forEach(function(divi){ %>
+					<li> <%= divi.product %> : <%= divi.winningSelections %> : $<%= divi.amount %></li>
+				<% }) %>
+			<% }) %>	
 			</ui>
 		<% } %>
 		<br><br>

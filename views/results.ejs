@@ -1,20 +1,20 @@
 <%include header %>
-		<h1><%= title %></h1>
+		<h1> Results </h1>
 		<% if(errors != undefined){ %>
 			<ui>
 			<% errors.forEach(function(error){ %>
-				<li> <%= error.msg %></li>
+				<li> <%= error %></li>
 			<% }) %>
 			</ui>
 		<% } %>
 		<form method="POST" action="/races/<%= raceId %>/results">
-			<label> First </label><br>
+			<label> First Ranker </label><br>
 			<input	type = "text" name ="first"><br>
 
-			<label> Second </label><br>
+			<label> Second Ranker</label><br>
 			<input	type = "text" name ="second"><br>
 
-			<label> Third </label><br>
+			<label> Third Ranker</label><br>
 			<input	type = "text" name ="third"><br><br>
 
 			<input type="submit" value="Submit">

@@ -15,8 +15,7 @@ router.get('/races/:raceId/dividends', function(req, res, next) {
 	 	if(err){
 			next(err);
 		}else{
-			return res.render('dividend', {
-				title : "Dividends",
+			return res.render('dividends', {
 				raceId : req.raceId,
 				dividends : resp
 			});
