@@ -3,7 +3,15 @@
 var config = require('../../config');
 var dUtil = require('./dividend-util');
 
-var content;
+/**
+ * getPlaceDividend method
+ * This method is used for getting place bet dividend amount.
+ * @method
+ * @param {String[]} placeBets - represets all place type bets on race
+ * @param {String} result - represents race result
+ * @param {Function} callback - represents Callback function
+ * @returns {String[]} placeDividends - represents place dividend amount
+ */
 function getPlaceDividend(placeBets, result, next){
 	try{
 		var matchCriteria = [];	
@@ -22,6 +30,14 @@ function getPlaceDividend(placeBets, result, next){
 	}
 }
 
+/**
+ * getCorrectBets method
+ * This method is used for getitng corrects bets list based on place bet types.
+ * @method
+ * @param {String[]} placeBets - represets all place type bets on race
+ * @param {String[]} matchCriteria - represents match criteria list
+ * @returns {String[]} betsLists - represents bets list
+ */
 function getCorrectBets(placeBets, matchCriteria){
 	var betsLists = {};
 	betsLists.first = dUtil.filterBetsBasedOnSelections(placeBets, matchCriteria[0]);
@@ -30,20 +46,36 @@ function getCorrectBets(placeBets, matchCriteria){
 	return betsLists;
 }
 
-function getBetsTotalAmounts(correctBetsAmountArray){
+/**
+ * getBetsTotalAmounts method
+ * This method is used for getting total amount list based on place bet types
+ * @method
+ * @param {String[]} correctBetsAmounts - represets bet amount list
+ * @returns {String[]} amounts - represents total amount
+ */
+function getBetsTotalAmounts(correctBetsAmounts){
 	var amounts = [];
-	amounts.first = dUtil.calculateTotalAmount(correctBetsAmountArray.first);
-	amounts.second = dUtil.calculateTotalAmount(correctBetsAmountArray.second);
-	amounts.third = dUtil.calculateTotalAmount(correctBetsAmountArray.third);
+	amounts.first = dUtil.calculateTotalAmount(correctBetsAmounts.first);
+	amounts.second = dUtil.calculateTotalAmount(correctBetsAmounts.second);
+	amounts.third = dUtil.calculateTotalAmount(correctBetsAmounts.third);
 	return amounts;
 }
 
-function getDividendForAllPlaces(poolAmount, correctBetsAmountArray, commission){
+/**
+ * getDividendForAllPlaces method
+ * This method is used for getting dividend amount list based on place bet types
+ * @method
+ * @param {String} poolAmount - represets total amount of bets
+ * @param {String} correctBetsAmounts - represets total amount list of correct bets
+ * @param {String} commission - represets commission of exacta bet type
+ * @returns {Number[]} dividedAmount - represents dividend amount list
+ */
+function getDividendForAllPlaces(poolAmount, correctBetsAmounts, commission){
 	poolAmount = poolAmount/3;
 	var dividentAmounts = [];
-	dividentAmounts.first = dUtil.getDividendAmount(poolAmount, correctBetsAmountArray.first, commission);
-	dividentAmounts.second = dUtil.getDividendAmount(poolAmount, correctBetsAmountArray.second, commission);
-	dividentAmounts.third = dUtil.getDividendAmount(poolAmount, correctBetsAmountArray.third, commission);
+	dividentAmounts.first = dUtil.getDividendAmount(poolAmount, correctBetsAmounts.first, commission);
+	dividentAmounts.second = dUtil.getDividendAmount(poolAmount, correctBetsAmounts.second, commission);
+	dividentAmounts.third = dUtil.getDividendAmount(poolAmount, correctBetsAmounts.third, commission);
 	return dividentAmounts;
 }
 

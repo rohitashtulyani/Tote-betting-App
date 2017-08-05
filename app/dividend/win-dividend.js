@@ -4,6 +4,15 @@ var fs = require('fs');
 var config = require('../../config');
 var dutil = require('./dividend-util');
 
+/**
+ * getWinDivident method
+ * This method is used for getitng win bet dividend amount.
+ * @method
+ * @param {String[]} winBets - represets all win type bets on race
+ * @param {String} result - represents race result
+ * @param {Function} callback - represents Callback function
+ * @returns {String[]} winDividends - represents win dividend amount
+ */
 function getWinDividend(winBets, result, next){
 	try{
 		var matchCriteria = result.first;

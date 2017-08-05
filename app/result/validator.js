@@ -1,5 +1,14 @@
 'use strict';
 
+/**
+ * Validate method
+ * This method is used for validating the result object. Result object has
+ * childs first, second and third. If validation fails return errros
+ * in next(errors), otherwise call next() function.
+ * @method
+ * @param {Result} result - represents Result object
+ * @param {function} next - represents Calback function
+ */
 function validate(result, cb) {
     var errors = [];
     if(result.first.trim()){
