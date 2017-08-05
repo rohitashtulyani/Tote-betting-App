@@ -41,7 +41,6 @@ function validate(bet, cb) {
 }
 
 function isValidSelections(value) {
-    console.log(/[1-9][0-9]*,[1-9][0-9]*|[1-9][0-9]*/.test(value));
     return /[1-9][0-9]*,[1-9][0-9]*|[1-9][0-9]*/.test(value);
 }
 

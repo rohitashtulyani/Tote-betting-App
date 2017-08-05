@@ -19,7 +19,6 @@ function Dividend(product, winningSelections, dividend){
 Dividend.calculate = function(req, next){
 	try{
 		var raceId = req.raceId;
-		console.log("raceId is : ",raceId);
 		var betsFile = "bets_"+raceId+".txt";
 		var betsData = fs.readFileSync(path.join('./db/' +betsFile),'utf8');
 		var bets =  betsData.split("\n");
@@ -35,7 +34,6 @@ Dividend.calculate = function(req, next){
 
 		Promise.all(dividentPromises)
 		.then(function(dividends){
-			console.log("dividends is :: ", dividends);
 			next(null, dividends);
 		})
 	}catch(err){
@@ -47,10 +45,8 @@ function getWinDivident(bets, resultData){
 	var winbets = dutil.filterBetsBasedOnProduct(bets, "W");
 	return Promise.promisify(wDividend)(winbets, resultData)
 			.then(function(winDividendAmount){
-				console.log("winDividendAmount is :: ", winDividendAmount);
 				var winDividends = [];
 				winDividends.push(new Dividend("Win", resultData.first, winDividendAmount));
-				console.log("winDividends is :: ", winDividends);
 				return winDividends;
 			});
 }
@@ -63,7 +59,6 @@ function getPlaceDivident(bets, resultData){
 				placeDividends.push(new Dividend("Place", resultData.first, placeDividendAmountArray.first));
 				placeDividends.push(new Dividend("Place", resultData.second, placeDividendAmountArray.second));
 				placeDividends.push(new Dividend("Place", resultData.third, placeDividendAmountArray.third));
-				console.log("placeDividends is :: ", placeDividends);
 				return placeDividends
 			});
 }
@@ -74,7 +69,6 @@ function getExactaDivident(bets, resultData){
 			.then(function(exactaDividendAmount){
 				var exactaDividents = [];
 				exactaDividents.push(new Dividend("Exacta", resultData.first+","+resultData.second, exactaDividendAmount));
-				console.log("exactaDividents is :: ", exactaDividents);
 				return exactaDividents;
 			});
 }
